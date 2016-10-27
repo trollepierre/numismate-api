@@ -1,0 +1,28 @@
+{
+  "name": "test_node",
+  "version": "1.0.0",
+  "description": "suivi de la formation skool 2",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/*.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trollepierre/test_node.git"
+  },
+  "author": "Pierre Trollé",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trollepierre/formation_skool_api/issues"
+  },
+  "homepage": "https://github.com/trollepierre/formation_skool_api#readme"
+  "dependencies": {
+    "hapi": "^15.0.3"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.0.2",
+    "sinon": "^1.17.5",
+    "sinon-chai": "^2.8.0"
+  }
+}

@@ -1,0 +1,9 @@
+[
+  { "name": "Pikachu", "type": "Electrik" },
+  { "name": "Dracaufeu", "type": "Feu" },
+  { "name": "Rattata", "type": "Normal" },
+  { "name": "Roucool", "type": "Normal" },
+  { "name": "Nidoran", "type": "Poison" },
+  { "name": "Hypocéan", "type": "Eau" },
+  { "name": "Kabuto", "type": "Roche" }
+]
