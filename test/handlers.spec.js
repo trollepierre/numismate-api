@@ -15,7 +15,38 @@ describe('Handlers', () => {
       handlers.helloWorld({}, mySpy);
 
       // Then
-      expect(mySpy).to.have.been.calledWith('Hello world!');
+      expect(mySpy).to.have.been.calledWith('Hello Numismate world!');
+    });
+  });
+
+  describe('.getPierreTrolle()', () => {
+    it('should get Pierre Trolle !', () => {
+      // Given
+      const mySpy = sinon.spy();
+
+      // When
+      handlers.getPierreTrolle({}, mySpy);
+
+      // Then
+      expect(mySpy).to.have.been.calledWith(require('../data_fr_1c.json'));
+    });
+
+
+    describe('when request has fields', () => {
+      it('should reply a list of pokemons with the asked fields', () => {
+        // Given
+        const mySpy = sinon.spy();
+        const request = {query: {fields: '1991'}};
+        const data = [
+              { "1991": "1" }
+            ];
+
+            // When
+            handlers.getPierreTrolle(request, mySpy);
+
+            // Then
+            expect(mySpy).to.have.been.calledWith(data);
+      });
     });
   });
 
@@ -48,10 +79,10 @@ describe('Handlers', () => {
             ];
 
             // When
-                handlers.getAllPokemons(request, mySpy);
+            handlers.getAllPokemons(request, mySpy);
 
             // Then
-                expect(mySpy).to.have.been.calledWith(data);
+            expect(mySpy).to.have.been.calledWith(data);
       });
     });
 });

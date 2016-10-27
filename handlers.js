@@ -2,7 +2,19 @@ const pokemons = require('./data')
 
 module.exports = {
     helloWorld (request, reply) {
-        reply('Hello world!');
+        reply('Hello Numismate world!');
+    },
+
+    getPierreTrolle(request, reply) {
+        const data = require("./data_fr_1c.json");
+        if (request.query && request.query.fields === 'name') {
+            return reply(data.map(pokemon => {
+                    return {
+                        name: pokemon.name
+                    }
+                }))
+        }
+        reply(data);
     },
 
     getAllPokemons(request, reply) {

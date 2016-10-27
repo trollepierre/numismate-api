@@ -8,6 +8,11 @@ module.exports = [
     },
     {
         method: 'GET',
+        path: '/pierretrolle/fr/1c',
+        handler: handlers.getPierreTrolle
+    },
+    {
+        method: 'GET',
         path: '/pokemons',
         handler: handlers.getAllPokemons
     },
