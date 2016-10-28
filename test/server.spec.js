@@ -21,8 +21,7 @@ describe('Server', () => {
                 done();
             });
         });
-
-    })
+    });
 
     describe('GET /pierretrolle/fr/1c', () => {
         it('should return a 200', (done) => {

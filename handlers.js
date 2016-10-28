@@ -6,11 +6,11 @@ module.exports = {
     },
 
     getPierreTrolle(request, reply) {
-        const data = require("./data/data_fr_1c.json");
-        if (request.query && request.query.fields === 'name') {
-            return reply(data.map(pokemon => {
+        const data = require("./data/data_pierretrolle.json");
+        if (request.query && request.query.fields === 'country') {
+            return reply(data.map(pseudo => {
                     return {
-                        name: pokemon.name
+                        country: pseudo.country
                     }
                 }))
         }
