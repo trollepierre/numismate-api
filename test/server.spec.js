@@ -51,6 +51,34 @@ describe('Server', () => {
         });
     });
 
+    describe('POST /pierretrolle', () => {
+        describe('when there is no payload', () => {
+            it('should return 400', (done) => {
+                server.inject({ method: 'post', url: '/pierretrolle'}, (res) => {
+                expect(res.statusCode).to.equal(400);
+                done();
+                });
+            });
+        });
+        describe('when there is a payload', () => {
+            it('should return 201', (done) => {
+                server.inject({ method: 'post', url: '/pierretrolle', payload: { country: 'Foobar'}}, (res) => {
+                    expect(res.statusCode).to.equal(201);
+                    done();
+                });
+            });
+            it('should add a new country to the list', (done) => {
+                server.inject({ method: 'post', url: '/pierretrolle', payload: { country: 'Foobar'}}, (res) => {
+                    server.inject('/pierretrolle', (res) => {
+                        const foobar = res.result.find(pseudo => pseudo.country === 'Foobar')
+                        expect(foobar).to.exist
+                        done();
+                    });
+                });
+            });
+        });
+    });
+
     describe('GET /pierretrolle/fr/1c', () => {
         it('should return a 200', (done) => {
             server.inject('/pierretrolle/fr/1c', (res) => {
@@ -72,47 +100,5 @@ describe('Server', () => {
                 done();
             });
         });
-
-        describe('when I provide a list of fields', () => {
-          it('should return the appropriate fields', (done) => {
-          server.inject('/pokemons?fields=name', (res) => {
-              const pokemons = require('../data/data');
-          expect(res.result).to.eql(pokemons.map(pokemon => {
-                  return {
-                      name: pokemon.name
-                  }
-              }));
-          done();
-            });
-          });
-        });
     });
-
-    describe('POST /pokemons', () => {
-        describe('when there is no payload', () => {
-          it('should return 400', (done) => {
-            server.inject({ method: 'post', url: '/pokemons'}, (res) => {
-              expect(res.statusCode).to.equal(400);
-              done();
-            });
-          });
-        });
-        describe('when there is a payload', () => {
-          it('should return 201', (done) => {
-            server.inject({ method: 'post', url: '/pokemons', payload: { name: 'Foobar'}}, (res) => {
-              expect(res.statusCode).to.equal(201);
-              done();
-            });
-          });
-          it('should add a new pokemon to the list', (done) => {
-            server.inject({ method: 'post', url: '/pokemons', payload: { name: 'Foobar'}}, (res) => {
-              server.inject('/pokemons', (res) => {
-                const foobar = res.result.find(pokemon => pokemon.name === 'Foobar')
-                expect(foobar).to.exist
-                done();
-              });
-            });
-          });
-        });
-      });
 });

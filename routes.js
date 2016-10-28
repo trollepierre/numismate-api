@@ -17,13 +17,8 @@ module.exports = [
         handler: handlers.getPierreTrolleFr1c
     },
     {
-        method: 'GET',
-        path: '/pokemons',
-        handler: handlers.getAllPokemons
-    },
-    {
         method: 'POST',
-        path: '/pokemons',
-        handler: handlers.addPokemon
+        path: '/pierretrolle',
+        handler: handlers.addCountry
     }
 ]

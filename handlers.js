@@ -1,4 +1,5 @@
 const pokemons = require('./data/data')
+const pierretrolle = require('./data/data_pierretrolle')
 
 module.exports = {
     helloWorld (request, reply) {
@@ -29,23 +30,11 @@ module.exports = {
         reply(data);
     },
 
-    getAllPokemons(request, reply) {
-        const data = require("./data/data.json");
-            if (request.query && request.query.fields === 'name') {
-                  return reply(data.map(pokemon => {
-                        return {
-                          name: pokemon.name
-                    }
-                  }))
-                }
-        reply(data);
-    },
-
-    addPokemon(request, reply) {
+    addCountry(request, reply) {
         if (!request.payload) {
             return reply().code(400)
         }
-        pokemons.push(request.payload)
+        pierretrolle.push(request.payload)
         reply().code(201);
     },
 }
