@@ -39,8 +39,8 @@ describe('Server', () => {
         describe('when I provide a list of fields', () => {
             it('should return the appropriate fields', (done) => {
                 server.inject('/pierretrolle?fields=country', (res) => {
-                    const pokemons = require('../data/data_pierretrolle');
-                    expect(res.result).to.eql(pokemons.map(pseudo => {
+                    const pierretrolle = require('../data/data_pierretrolle');
+                    expect(res.result).to.eql(pierretrolle.map(pseudo => {
                             return {
                                 country: pseudo.country
                             }
@@ -72,6 +72,28 @@ describe('Server', () => {
                     server.inject('/pierretrolle', (res) => {
                         const foobar = res.result.find(pseudo => pseudo.country === 'Foobar')
                         expect(foobar).to.exist
+                        done();
+                    });
+                });
+            });
+            it('should add a new coin into the country/value/year', (done) => {
+                server.inject({
+                    method: 'post',
+                    url: '/pierretrolle',
+                    payload: {
+                        country: 'Foobar',
+                        value: 'c1',
+                        year: '1999',
+                        quantity: '8'
+                    }
+                }, (res) => {
+                    server.inject('/pierretrolle', (res) => {
+                        const c1 = res.result.find(pseudo => pseudo.value === 'c1')
+                        expect(c1).to.exist
+                        const year = res.result.find(pseudo => pseudo.year === '1999')
+                        expect(year).to.exist
+                        const quantity = res.result.find(pseudo => pseudo.quantity === '8')
+                        expect(quantity).to.exist
                         done();
                     });
                 });
