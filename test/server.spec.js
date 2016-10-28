@@ -16,6 +16,16 @@ describe('Server', () => {
 
     describe('GET /pierretrolle', () => {
         it('should return a 200', (done) => {
+            server.inject('/pierretrolle', (res) => {
+                expect(res.statusCode).to.equal(200);
+                done();
+            });
+        });
+
+    })
+
+    describe('GET /pierretrolle/fr/1c', () => {
+        it('should return a 200', (done) => {
             server.inject('/pierretrolle/fr/1c', (res) => {
                 expect(res.statusCode).to.equal(200);
                 done();
@@ -32,7 +42,7 @@ describe('Server', () => {
 
         it('should return 1 coin in 1991', (done) => {
             server.inject('/pierretrolle/fr/1c', (res) => {
-            expect(res.result).to.deep.equal(require('../data_fr_1c'));
+            expect(res.result).to.deep.equal(require('../data/data_fr_1c'));
                 done();
             });
         });
@@ -40,7 +50,7 @@ describe('Server', () => {
         describe('when I provide a list of fields', () => {
           it('should return the appropriate fields', (done) => {
           server.inject('/pokemons?fields=name', (res) => {
-              const pokemons = require('../data');
+              const pokemons = require('../data/data');
           expect(res.result).to.eql(pokemons.map(pokemon => {
                   return {
                       name: pokemon.name

@@ -1,0 +1,39 @@
+[
+  {
+    "country": "France",
+    "1c": [
+      {
+        "year": "1999",
+        "number": 1
+      },
+      {
+        "year": "2000",
+        "number": 1
+      }
+    ],
+    "2c": [
+      {
+        "year": "1999",
+        "number": 1
+      }
+    ],
+    "5c": [
+      {
+        "year": "1999",
+        "number": 1
+      }
+    ],
+    "10c": [
+      {
+        "year": "1999",
+        "number": 1
+      }
+    ]
+  },
+  {
+    "country": "Belgique"
+  },
+  {
+    "country": "Allemagne"
+  }
+]

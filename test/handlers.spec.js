@@ -19,17 +19,30 @@ describe('Handlers', () => {
     });
   });
 
-  describe('.getPierreTrolle()', () => {
-    it('should get Pierre Trolle !', () => {
+  describe('.getPierreTrolleFr1c()', () => {
+    it('should get Pierre TrolleFr1c !', () => {
       // Given
       const mySpy = sinon.spy();
 
       // When
-      handlers.getPierreTrolle({}, mySpy);
+      handlers.getPierreTrolleFr1c({}, mySpy);
 
       // Then
-      expect(mySpy).to.have.been.calledWith(require('../data_fr_1c.json'));
+      expect(mySpy).to.have.been.calledWith(require('../data/data_fr_1c.json'));
     });
+
+  describe('.getPierreTrolleFr1c()', () => {
+    it('should get Pierre TrolleFr1c !', () => {
+      // Given
+      const mySpy = sinon.spy();
+
+      // When
+      handlers.getPierreTrolleFr1c({}, mySpy);
+
+      // Then
+      expect(mySpy).to.have.been.calledWith(require('../data/data_fr_1c.json'));
+    });
+  });
 
 
     describe('when request has fields', () => {
@@ -59,7 +72,7 @@ describe('Handlers', () => {
       handlers.getAllPokemons({}, mySpy);
 
       // Then
-      expect(mySpy).to.have.been.calledWith(require('../data.json'));
+      expect(mySpy).to.have.been.calledWith(require('../data/data.json'));
     });
 
 

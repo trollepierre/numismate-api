@@ -8,8 +8,13 @@ module.exports = [
     },
     {
         method: 'GET',
-        path: '/pierretrolle/fr/1c',
+        path: '/pierretrolle',
         handler: handlers.getPierreTrolle
+    },
+    {
+        method: 'GET',
+        path: '/pierretrolle/fr/1c',
+        handler: handlers.getPierreTrolleFr1c
     },
     {
         method: 'GET',

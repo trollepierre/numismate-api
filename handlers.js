@@ -1,4 +1,4 @@
-const pokemons = require('./data')
+const pokemons = require('./data/data')
 
 module.exports = {
     helloWorld (request, reply) {
@@ -6,7 +6,19 @@ module.exports = {
     },
 
     getPierreTrolle(request, reply) {
-        const data = require("./data_fr_1c.json");
+        const data = require("./data/data_fr_1c.json");
+        if (request.query && request.query.fields === 'name') {
+            return reply(data.map(pokemon => {
+                    return {
+                        name: pokemon.name
+                    }
+                }))
+        }
+        reply(data);
+    },
+
+    getPierreTrolleFr1c(request, reply) {
+        const data = require("./data/data_fr_1c.json");
         if (request.query && request.query.fields === 'name') {
             return reply(data.map(pokemon => {
                     return {
@@ -18,7 +30,7 @@ module.exports = {
     },
 
     getAllPokemons(request, reply) {
-        const data = require("./data.json");
+        const data = require("./data/data.json");
             if (request.query && request.query.fields === 'name') {
                   return reply(data.map(pokemon => {
                         return {
