@@ -21,6 +21,34 @@ describe('Server', () => {
                 done();
             });
         });
+
+        it('should return an array', (done) => {
+            server.inject('/pierretrolle', (res) => {
+                expect(res.result).to.be.an('array');
+                done();
+            });
+        });
+
+        it('should return the collection of pierretrolle', (done) => {
+            server.inject('/pierretrolle', (res) => {
+                expect(res.result).to.deep.equal(require('../data/data_pierretrolle'));
+                done();
+            });
+        });
+
+        describe('when I provide a list of fields', () => {
+            it('should return the appropriate fields', (done) => {
+                server.inject('/pierretrolle?fields=country', (res) => {
+                    const pokemons = require('../data/data_pierretrolle');
+                    expect(res.result).to.eql(pokemons.map(pseudo => {
+                            return {
+                                country: pseudo.country
+                            }
+                        }));
+                    done();
+                });
+            });
+        });
     });
 
     describe('GET /pierretrolle/fr/1c', () => {
@@ -37,7 +65,6 @@ describe('Server', () => {
              done();
            });
          });
-
 
         it('should return 1 coin in 1991', (done) => {
             server.inject('/pierretrolle/fr/1c', (res) => {
@@ -88,20 +115,4 @@ describe('Server', () => {
           });
         });
       });
-
-    describe('GET /days', () => {
-        it('should return a 200', (done) => {
-        server.inject('/days', (res) => {
-            expect(res.statusCode).to.equal(200);
-            done();
-            });
-        });
-
-        it('should return a list of days', (done) => {
-            server.inject('/days', (res) => {
-            expect(res.result).to.deep.equal([]);
-            done();
-            });
-        });
-    });
 });

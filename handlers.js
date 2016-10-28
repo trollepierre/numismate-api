@@ -48,8 +48,4 @@ module.exports = {
         pokemons.push(request.payload)
         reply().code(201);
     },
-
-    getDays(request, reply) {
-        reply([]);
-    }
 }
