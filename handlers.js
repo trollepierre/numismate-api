@@ -45,7 +45,7 @@ module.exports = {
         if (!request.payload) {
             return reply().code(400)
         }
-        users.push(request.payload)
+       users.push(request.payload)
         reply().code(201);
     },
 }

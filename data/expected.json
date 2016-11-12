@@ -6,6 +6,7 @@ GET : /api/users
 
 POST : /api/users
 -> { id: "", username: "ASA" }
+//curl --data "username=ASA&id=8" http://pc25.home:3000/api/users
 
 GET : /api/users/username.id OU /api/users/:username
 -> { id: "", username: "ASA" }

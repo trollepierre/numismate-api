@@ -40,9 +40,9 @@ describe('Server', () => {
             it('should return the appropriate fields', (done) => {
                 server.inject('/api/users?fields=country', (res) => {
                     const users = require('../data/data_users');
-                    expect(res.result).to.eql(users.map(pseudo => {
+                    expect(res.result).to.eql(users.map(user => {
                             return {
-                                country: pseudo.country
+                                username: user.username
                             }
                         }));
                     done();
@@ -71,10 +71,7 @@ describe('Server', () => {
                 server.inject({ method: 'post', url: '/api/users', payload: { username: "ASA" }}, (res) => {
                     server.inject('/api/users', (res) => {
                         const adrien_name = res.result.find(user => user.username === 'ASA')
-                        const adrien_id = res.result.find(user => user.id === '1')
                         expect(adrien_name).to.exist
-                        expect(adrien_id).to.exist
-                        expect(adrien_id).to.be(1)
                         done();
                     });
                 });
@@ -84,19 +81,13 @@ describe('Server', () => {
                     method: 'post',
                     url: '/api/users',
                     payload: {
-                        username: 'Foobar',
-                        value: 'c1',
-                        year: '1999',
-                        quantity: '8'
+                        username: 'ASA',
+                        id: '1'
                     }
                 }, (res) => {
                     server.inject('/api/users', (res) => {
-                        const c1 = res.result.find(pseudo => pseudo.value === 'c1')
-                        expect(c1).to.exist
-                        const year = res.result.find(pseudo => pseudo.year === '1999')
-                        expect(year).to.exist
-                        const quantity = res.result.find(pseudo => pseudo.quantity === '8')
-                        expect(quantity).to.exist
+                        const adrien_id = res.result.find(user => user.id === '1')
+                        expect(adrien_id).to.exist
                         done();
                     });
                 });
