@@ -7,12 +7,17 @@ GET : /api/users
 POST : /api/users
 -> { id: "", username: "ASA" }
 //curl --data "username=ASA&id=8" http://pc25.home:3000/api/users
+// TODO : ajout de l'id sans le définir
 
 GET : /api/users/username.id OU /api/users/:username
 -> { id: "", username: "ASA" }
 
 GET : /api/users/username.id/coins
 -> []
+// TODO : retrait du [[]]
+// TODO : extraire des private functions
+// TODO : factoriser pour des cas à plus de pièces
+
 
 GET : /api/users/username.id/coins?page=1
 GET : /api/users/username.id/coins?origin=FR&order=desc&orderBy=id

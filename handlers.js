@@ -17,16 +17,12 @@ module.exports = {
         reply(data);
     },
 
-    getPierreTrolle(request, reply) {
-        const data = require("./data/data_pierretrolle.json");
-        if (request.query && request.query.fields === 'country') {
-            return reply(data.map(pseudo => {
-                    return {
-                        country: pseudo.country
-                    }
-                }))
+    addCountry(request, reply) {
+        if (!request.payload) {
+            return reply().code(400)
         }
-        reply(data);
+       users.push(request.payload)
+        reply().code(201);
     },
 
     getUser(request, reply) {
@@ -47,11 +43,31 @@ module.exports = {
         reply(data);
     },
 
-    addCountry(request, reply) {
-        if (!request.payload) {
-            return reply().code(400)
+    getCoins(request, reply) {
+        const data = require("./data/data_users.json");
+        if (request.params && request.params.username) {
+            return reply(data
+                    .filter(function(user){
+                        return (user.username === request.params.username);
+                    })
+                    .filter(function(user){
+                        return (user.coins);
+                    })
+                    .map(user => {
+                        return [{
+                            country: user.coins[0].country,
+                            value: user.coins[0].value,
+                            year: user.coins[0].year
+                        },
+                        {
+                            country: user.coins[1].country,
+                            value: user.coins[1].value,
+                            year: user.coins[1].year
+                        }]
+                    })
+            )
         }
-       users.push(request.payload)
-        reply().code(201);
+        reply(data);
     },
+
 }

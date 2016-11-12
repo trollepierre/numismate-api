@@ -9,10 +9,29 @@
   },
   {
     "username": "ASA",
-    "id": "2"
+    "id": "2",
+    "coins": [
+      {
+        "country": "France",
+        "value": "10c",
+        "year": "1993"
+      }
+    ]
   },
   {
   "username": "PTR",
-    "id": "3"
+    "id": "3",
+    "coins": [
+      {
+        "country": "France",
+        "value": "1c",
+        "year": "1991"
+      },
+      {
+        "country": "France",
+        "value": "2c",
+        "year": "1992"
+      }
+    ]
   }
 ]

@@ -5,6 +5,7 @@ chai.config.truncateThreshold = 0;
 
 
 describe('Server', () => {
+
     describe('GET /',() => {
     it('should return the appropriate string', (done) => {
         server.inject('/', (res) => {
@@ -72,20 +73,6 @@ describe('Server', () => {
                     server.inject('/api/users', (res) => {
                         const adrien_name = res.result.find(user => user.username === 'ASA')
                         expect(adrien_name).to.exist
-                        done();
-                    });
-                });
-            });
-            it('should add a new coin into the country/value/year', (done) => {
-                server.inject({
-                    method: 'post',
-                    url: '/api/users',
-                    payload: {
-                        username: 'ASA',
-                        id: '1'
-                    }
-                }, (res) => {
-                    server.inject('/api/users', (res) => {
                         const adrien_id = res.result.find(user => user.id === '1')
                         expect(adrien_id).to.exist
                         done();
@@ -120,4 +107,57 @@ describe('Server', () => {
             });
         });
     });
+
+    describe('GET /api/users/ASA/coins', () => {
+        it('should return a 200', (done) => {
+            server.inject('/api/users/PierreTrolle/coins', (res) => {
+                expect(res.statusCode).to.equal(200);
+                done();
+            });
+        });
+
+        it('should return an array', (done) => {
+           server.inject('/api/users/PierreTrolle/coins', (res) => {
+             expect(res.result).to.be.an('array');
+             done();
+           });
+         });
+
+        it('should return all coins from username PTR', (done) => {
+            server.inject('/api/users/PTR/coins', (res) => {
+                const coins = [[
+                    {
+                        "country": "France",
+                        "value": "1c",
+                        "year": "1991"
+                    },
+                    {
+                        "country": "France",
+                        "value": "2c",
+                        "year": "1992"
+                    }
+                ]]
+                expect(res.result).to.eql(coins)
+                done();
+            });
+        });
+
+        // it('should return all coins from username ASA', (done) => {
+        //     server.inject('/api/users/ASA/coins', (res) => {
+        //         const coins = [
+        //             {
+        //                 "country": "France",
+        //                 "value": "10c",
+        //                 "year": "1993"
+        //             }
+        //         ]
+        //         expect(res.result).to.eql(coins)
+        //         done();
+        //     });
+        // });
+
+
+    });
+
+
 });

@@ -12,13 +12,18 @@ module.exports = [
         handler: handlers.getUsers
     },
     {
+        method: 'POST',
+        path: '/api/users',
+        handler: handlers.addCountry
+    },
+    {
         method: 'GET',
         path: '/api/users/{username}',
         handler: handlers.getUser
     },
     {
-        method: 'POST',
-        path: '/api/users',
-        handler: handlers.addCountry
+        method: 'GET',
+        path: '/api/users/{username}/coins',
+        handler: handlers.getCoins
     }
 ];
