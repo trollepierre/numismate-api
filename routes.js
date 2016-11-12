@@ -8,17 +8,17 @@ module.exports = [
     },
     {
         method: 'GET',
-        path: '/api/pierretrolle',
+        path: '/api/users',
         handler: handlers.getPierreTrolle
     },
     {
         method: 'GET',
-        path: '/pierretrolle/fr/1c',
+        path: '/users/fr/1c',
         handler: handlers.getPierreTrolleFr1c
     },
     {
         method: 'POST',
-        path: '/api/pierretrolle',
+        path: '/api/users',
         handler: handlers.addCountry
     }
 ]

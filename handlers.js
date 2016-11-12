@@ -1,4 +1,3 @@
-// const pokemons = require('./data/data')
 const pierretrolle = require('./data/data_pierretrolle')
 
 module.exports = {
