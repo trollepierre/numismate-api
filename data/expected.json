@@ -1,0 +1,22 @@
+POST : /api/users
+-> { id: "", username: "ASA" }
+
+GET : /api/users/username.id OU /api/users/:username
+-> { id: "", username: "ASA" }
+
+GET : /api/users/username.id/coins
+-> []
+
+GET : /api/users/username.id/coins?page=1
+GET : /api/users/username.id/coins?origin=FR&order=desc&orderBy=id
+
+POST : /api/users/username.id/coins
+-> { id:"", origin: "", owner: "" }
+PUT : /api/users/username.id/coins/:coinid
+-> { id:"", origin: "", owner: "", modications: [{}] }
+
+PATCH : /api/users/username.id/coins/<id>
+-> { id:"", origin: "", owner: "", modications: [{}] }
+
+DELETE : /api/users/username.id/coins
+-> null
