@@ -1,8 +1,20 @@
-const pierretrolle = require('./data/data_pierretrolle')
+const pierretrolle = require('./data/data_users')
 
 module.exports = {
     helloWorld (request, reply) {
         reply('Hello Numismate world!');
+    },
+
+    getUsers(request, reply) {
+        const data = require("./data/data_users.json");
+        if (request.query && request.query.fields === 'country') {
+            return reply(data.map(pseudo => {
+                    return {
+                        country: pseudo.country
+                    }
+                }))
+        }
+        reply(data);
     },
 
     getPierreTrolle(request, reply) {

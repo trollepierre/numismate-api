@@ -9,7 +9,7 @@ module.exports = [
     {
         method: 'GET',
         path: '/api/users',
-        handler: handlers.getPierreTrolle
+        handler: handlers.getUsers
     },
     {
         method: 'GET',

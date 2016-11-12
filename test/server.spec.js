@@ -31,7 +31,7 @@ describe('Server', () => {
 
         it('should return the collection of users', (done) => {
             server.inject('/api/users', (res) => {
-                expect(res.result).to.deep.equal(require('../data/data_pierretrolle'));
+                expect(res.result).to.deep.equal(require('../data/data_users'));
                 done();
             });
         });
@@ -39,7 +39,7 @@ describe('Server', () => {
         describe('when I provide a list of fields', () => {
             it('should return the appropriate fields', (done) => {
                 server.inject('/api/users?fields=country', (res) => {
-                    const users = require('../data/data_pierretrolle');
+                    const users = require('../data/data_users');
                     expect(res.result).to.eql(users.map(pseudo => {
                             return {
                                 country: pseudo.country
