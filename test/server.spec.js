@@ -62,19 +62,16 @@ describe('Server', () => {
         });
         describe('when there is a payload', () => {
             it('should return 201', (done) => {
-                server.inject({ method: 'post', url: '/api/users', payload: { username: "ASA" }}, (res) => {
+                server.inject({ method: 'post', url: '/api/users', payload: { country: 'Foobar'}}, (res) => {
                     expect(res.statusCode).to.equal(201);
                     done();
                 });
             });
-            it('should add a new user to the list', (done) => {
-                server.inject({ method: 'post', url: '/api/users', payload: { username: "ASA" }}, (res) => {
+            it('should add a new country to the list', (done) => {
+                server.inject({ method: 'post', url: '/api/users', payload: { country: 'Foobar'}}, (res) => {
                     server.inject('/api/users', (res) => {
-                        const adrien_name = res.result.find(user => user.username === 'ASA')
-                        const adrien_id = res.result.find(user => user.id === '1')
-                        expect(adrien_name).to.exist
-                        expect(adrien_id).to.exist
-                        expect(adrien_id).to.be(1)
+                        const foobar = res.result.find(pseudo => pseudo.country === 'Foobar')
+                        expect(foobar).to.exist
                         done();
                     });
                 });
@@ -84,7 +81,7 @@ describe('Server', () => {
                     method: 'post',
                     url: '/api/users',
                     payload: {
-                        username: 'Foobar',
+                        country: 'Foobar',
                         value: 'c1',
                         year: '1999',
                         quantity: '8'

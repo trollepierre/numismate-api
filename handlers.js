@@ -1,4 +1,4 @@
-const users = require('./data/data_users')
+const pierretrolle = require('./data/data_users')
 
 module.exports = {
     helloWorld (request, reply) {
@@ -7,10 +7,10 @@ module.exports = {
 
     getUsers(request, reply) {
         const data = require("./data/data_users.json");
-        if (request.query && request.query.fields === 'username') {
-            return reply(data.map(user => {
+        if (request.query && request.query.fields === 'country') {
+            return reply(data.map(pseudo => {
                     return {
-                        username: user.username
+                        country: pseudo.country
                     }
                 }))
         }
@@ -45,7 +45,7 @@ module.exports = {
         if (!request.payload) {
             return reply().code(400)
         }
-        users.push(request.payload)
+        pierretrolle.push(request.payload)
         reply().code(201);
     },
 }

@@ -21,4 +21,4 @@ module.exports = [
         path: '/api/users',
         handler: handlers.addCountry
     }
-];
+]

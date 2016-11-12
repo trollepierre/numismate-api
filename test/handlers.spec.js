@@ -19,7 +19,7 @@ describe('Handlers', () => {
         });
 
         describe('when request has fields', () => {
-            it('should reply a list of countries with the asked fields', () => {
+            it('should reply a list of pokemons with the asked fields', () => {
                 // Given
                 const mySpy = sinon.spy();
                 const request = {query: {fields: 'country'}};
@@ -31,38 +31,6 @@ describe('Handlers', () => {
 
                 // When
                 handlers.getPierreTrolle(request, mySpy);
-
-                // Then
-                expect(mySpy).to.have.been.calledWith(data);
-            });
-        });
-    });
-
-   describe('.getUsers()', () => {
-        it('should get Users!', () => {
-            // Given
-            const mySpy = sinon.spy();
-
-            // When
-            handlers.getUsers({}, mySpy);
-
-            // Then
-            expect(mySpy).to.have.been.calledWith(require('../data/data_users.json'));
-        });
-
-        describe('when request has fields', () => {
-            it('should reply a list of users with the asked fields', () => {
-                // Given
-                const mySpy = sinon.spy();
-                const request = {query: {fields: 'username'}};
-                const data = [
-                    { "username": "PierreTrolle" },
-                    { "username": "Adrien" },
-                    { "username": "PTR" }
-                ];
-
-                // When
-                handlers.getUsers(request, mySpy);
 
                 // Then
                 expect(mySpy).to.have.been.calledWith(data);
