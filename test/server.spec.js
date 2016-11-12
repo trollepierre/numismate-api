@@ -38,7 +38,7 @@ describe('Server', () => {
 
         describe('when I provide a list of fields', () => {
             it('should return the appropriate fields', (done) => {
-                server.inject('/api/users?fields=country', (res) => {
+                server.inject('/api/users?fields=username', (res) => {
                     const users = require('../data/data_users');
                     expect(res.result).to.eql(users.map(user => {
                             return {
@@ -62,13 +62,13 @@ describe('Server', () => {
         });
         describe('when there is a payload', () => {
             it('should return 201', (done) => {
-                server.inject({ method: 'post', url: '/api/users', payload: { username: "ASA" }}, (res) => {
+                server.inject({ method: 'post', url: '/api/users', payload: { username: "ASA", id:"7" }}, (res) => {
                     expect(res.statusCode).to.equal(201);
                     done();
                 });
             });
             it('should add a new user to the list', (done) => {
-                server.inject({ method: 'post', url: '/api/users', payload: { username: "ASA" }}, (res) => {
+                server.inject({ method: 'post', url: '/api/users', payload: { username: "ASA", id:"7" }}, (res) => {
                     server.inject('/api/users', (res) => {
                         const adrien_name = res.result.find(user => user.username === 'ASA')
                         expect(adrien_name).to.exist
@@ -95,24 +95,27 @@ describe('Server', () => {
         });
     });
 
-    describe('GET /users/fr/1c', () => {
+    describe('GET /api/users/ASA', () => {
         it('should return a 200', (done) => {
-            server.inject('/users/fr/1c', (res) => {
+            server.inject('/api/users/ASA', (res) => {
                 expect(res.statusCode).to.equal(200);
                 done();
             });
         });
 
         it('should return an array', (done) => {
-           server.inject('/users/fr/1c', (res) => {
+           server.inject('/api/users/ASA', (res) => {
              expect(res.result).to.be.an('array');
              done();
            });
          });
 
-        it('should return 1 coin in 1991', (done) => {
-            server.inject('/users/fr/1c', (res) => {
-            expect(res.result).to.deep.equal(require('../data/data_fr_1c'));
+        it('should return users with username = PTR', (done) => {
+            server.inject('/api/users/PTR', (res) => {
+                const users = [{
+                    username: 'PTR', id: '3'
+                }]
+                expect(res.result).to.eql(users)
                 done();
             });
         });

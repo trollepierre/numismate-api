@@ -29,14 +29,20 @@ module.exports = {
         reply(data);
     },
 
-    getPierreTrolleFr1c(request, reply) {
-        const data = require("./data/data_fr_1c.json");
-        if (request.query && request.query.fields === 'name') {
-            return reply(data.map(pokemon => {
-                    return {
-                        name: pokemon.name
-                    }
-                }))
+    getUser(request, reply) {
+        const data = require("./data/data_users.json");
+        if (request.params && request.params.username) {
+            return reply(data
+                    .filter(function(user){
+                        return (user.username === request.params.username);
+                    })
+                    .map(user => {
+                        return {
+                            username: user.username,
+                            id: user.id
+                        }
+                    })
+            )
         }
         reply(data);
     },

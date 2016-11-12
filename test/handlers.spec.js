@@ -57,7 +57,8 @@ describe('Handlers', () => {
                 const request = {query: {fields: 'username'}};
                 const data = [
                     { "username": "PierreTrolle" },
-                    { "username": "Adrien" },
+                    { "username": "PierreTrolle" },
+                    { "username": "ASA" },
                     { "username": "PTR" }
                 ];
 
@@ -70,30 +71,38 @@ describe('Handlers', () => {
         });
     });
 
-    describe('.getPierreTrolleFr1c()', () => {
-        it('should get Pierre TrolleFr1c !', () => {
-
+    describe('.getUser()', () => {
+        it('should get User', () => {
             // Given
             const mySpy = sinon.spy();
 
             // When
-            handlers.getPierreTrolleFr1c({}, mySpy);
+            handlers.getUser({}, mySpy);
 
             // Then
-            expect(mySpy).to.have.been.calledWith(require('../data/data_fr_1c.json'));
+            expect(mySpy).to.have.been.calledWith(require('../data/data_users.json'));
         });
 
-        describe('when request has fields', () => {
-            it('should reply a list of pokemons with the asked fields', () => {
+        describe('when request has params', () => {
+            it('should reply an user according to the username', () => {
                 // Given
                 const mySpy = sinon.spy();
-                const request = {query: {fields: '1991'}};
+                const request = {
+                    params: {username: 'PierreTrolle'}
+                };
                 const data = [
-                    { "1991": "1" }
+                    {
+                        "username": "PierreTrolle",
+                        "id" : "1"
+                    },
+                    {
+                        "username": "PierreTrolle",
+                        "id" : "4"
+                    }
                 ];
 
                 // When
-                handlers.getPierreTrolleFr1c(request, mySpy);
+                handlers.getUser(request, mySpy);
 
                 // Then
                 expect(mySpy).to.have.been.calledWith(data);

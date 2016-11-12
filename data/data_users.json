@@ -1,11 +1,18 @@
 [
   {
-    "username": "PierreTrolle"
+    "username": "PierreTrolle",
+    "id": "1"
   },
   {
-    "username": "Adrien"
+    "username": "PierreTrolle",
+    "id": "4"
   },
   {
-  "username": "PTR"
+    "username": "ASA",
+    "id": "2"
+  },
+  {
+  "username": "PTR",
+    "id": "3"
   }
 ]

@@ -13,8 +13,8 @@ module.exports = [
     },
     {
         method: 'GET',
-        path: '/users/fr/1c',
-        handler: handlers.getPierreTrolleFr1c
+        path: '/api/users/{username}',
+        handler: handlers.getUser
     },
     {
         method: 'POST',
