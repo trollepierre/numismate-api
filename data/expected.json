@@ -16,7 +16,8 @@ GET : /api/users/username.id/coins
 -> []
 // TODO : retrait du [[]]
 // TODO : extraire des private functions
-// TODO : factoriser pour des cas à plus de pièces
+// TODO : factoriser pour des cas à plus de pièce
+// TODO  https://github.com/geek/hapi-example
 
 
 GET : /api/users/username.id/coins?page=1

@@ -6,7 +6,7 @@ chai.use(require('sinon-chai'));
 
 describe('Handlers', () => {
 
-   describe('.getUsers()', () => {
+    describe('.getUsers()', () => {
         it('should get Users!', () => {
             // Given
             const mySpy = sinon.spy();
@@ -24,10 +24,10 @@ describe('Handlers', () => {
                 const mySpy = sinon.spy();
                 const request = {query: {fields: 'username'}};
                 const data = [
-                    { "username": "PierreTrolle" },
-                    { "username": "PierreTrolle" },
-                    { "username": "ASA" },
-                    { "username": "PTR" }
+                    {"username": "PierreTrolle"},
+                    {"username": "PierreTrolle"},
+                    {"username": "ASA"},
+                    {"username": "PTR"}
                 ];
 
                 // When
@@ -61,11 +61,11 @@ describe('Handlers', () => {
                 const data = [
                     {
                         "username": "PierreTrolle",
-                        "id" : "1"
+                        "id": "1"
                     },
                     {
                         "username": "PierreTrolle",
-                        "id" : "4"
+                        "id": "4"
                     }
                 ];
 

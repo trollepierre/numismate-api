@@ -1,5 +1,5 @@
 const Hapi = require("hapi");
-const routes = require("./routes.js")
+const routes = require("./routes.js");
 const server = new Hapi.Server();
 
 server.connection({port: 3000});
@@ -13,4 +13,4 @@ server.start((err) => {
     console.log(`Server running at: ${server.info.uri}`);
 });
 
-module.exports = server
+module.exports = server;
