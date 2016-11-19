@@ -17,7 +17,7 @@ module.exports = [
         method: 'POST',
         path: '/api/users',
         config: {
-            handler: handlers.addCountry
+            handler: handlers.addUser
             // validate: {payload: Joi.string().required()}
         }
     },
@@ -35,6 +35,13 @@ module.exports = [
         config: {
             handler: handlers.getCoins,
             validate: {query: {name: Joi.string().min(3).max(20)}}
+        }
+    },
+    {
+        method: 'GET',
+        path: '/api/database',
+        config: {
+            handler: handlers.getDatabase
         }
     }
 ];

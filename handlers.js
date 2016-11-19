@@ -1,7 +1,8 @@
-const users = require('./data/data_users')
+const users = require('./data/data_users');
+const database = require('./service/database');
 
 module.exports = {
-    helloWorld (request, reply) {
+    helloWorld(request, reply) {
         reply('Hello Numismate world!');
     },
 
@@ -17,7 +18,7 @@ module.exports = {
         reply(data);
     },
 
-    addCountry(request, reply) {
+    addUser(request, reply) {
         if (!request.payload) {
             return reply().code(400);
         }
@@ -58,5 +59,13 @@ module.exports = {
         }
         reply(data);
     },
+
+    getDatabase(request, reply) {
+        // reply('Hello Numismate world!');
+        reply(database.doQuery());
+
+
+    },
+
 
 };

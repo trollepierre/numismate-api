@@ -3,7 +3,6 @@ const expect = chai.expect;
 const server = require('../server');
 chai.config.truncateThreshold = 0;
 
-
 describe('Server', () => {
 
     describe('GET /', () => {
@@ -142,22 +141,43 @@ describe('Server', () => {
             });
         });
 
-        // it('should return all coins from username ASA', (done) => {
-        //     server.inject('/api/users/ASA/coins', (res) => {
-        //         const coins = [
-        //             {
-        //                 "country": "France",
-        //                 "value": "10c",
-        //                 "year": "1993"
-        //             }
-        //         ]
-        //         expect(res.result).to.eql(coins)
-        //         done();
-        //     });
-        // });
-
-
+        it('should return all coins from username ASA', (done) => {
+            server.inject('/api/users/ASA/coins', (res) => {
+                const coins = [[
+                    {
+                        "country": "France",
+                        "value": "10c",
+                        "year": "1993"
+                    }
+                ]];
+                expect(res.result).to.eql(coins);
+                done();
+            });
+        });
     });
 
+    describe('GET /api/database', () => {
+        it('should return the appropriate string', (done) => {
+            server.inject('/api/database', (res) => {
+                expect(res.statusCode).to.equal(200);
+                done();
+            });
+        });
+
+        it('should return an array', (done) => {
+            server.inject('/api/database', (res) => {
+                expect(res.result).to.be.an('array');
+                done();
+            });
+        });
+
+        xit('should return pas de solution', (done) => {
+            server.inject('/api/database', (res) => {
+                expect(res.result).to.deep.equal(["Pas de solution"]);
+                done();
+            });
+        });
+
+    });
 
 });
