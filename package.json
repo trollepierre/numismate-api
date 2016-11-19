@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/trollepierre/formation_skool_api/issues"
   },
-  "homepage": "https://github.com/trollepierre/formation_skool_api#readme"
+  "homepage": "https://github.com/trollepierre/formation_skool_api#readme",
   "dependencies": {
     "hapi": "^15.0.3"
   },
