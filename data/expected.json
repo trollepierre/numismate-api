@@ -33,3 +33,6 @@ PATCH : /api/users/username.id/coins/<id>
 
 DELETE : /api/users/username.id/coins
 -> null
+
+
+// TODO : gérer la base de données

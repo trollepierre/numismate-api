@@ -1,3 +1,5 @@
+var Joi = require('joi');
+
 const handlers = require('./handlers');
 
 module.exports = [
@@ -14,16 +16,25 @@ module.exports = [
     {
         method: 'POST',
         path: '/api/users',
-        handler: handlers.addCountry
+        config: {
+            handler: handlers.addCountry
+            // validate: {payload: Joi.string().required()}
+        }
     },
     {
         method: 'GET',
         path: '/api/users/{username}',
-        handler: handlers.getUser
+        config: {
+            handler: handlers.getUser,
+            validate: {query: {name: Joi.string().min(3).max(20)}}
+        }
     },
     {
         method: 'GET',
         path: '/api/users/{username}/coins',
-        handler: handlers.getCoins
+        config: {
+            handler: handlers.getCoins,
+            validate: {query: {name: Joi.string().min(3).max(20)}}
+        }
     }
 ];
